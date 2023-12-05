@@ -1,0 +1,51 @@
+﻿@model ProyectoProg1.Models.Ropa
+@{
+    ViewBag.Title = "Cálculos de Precios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>@ViewBag.Title</h2>
+
+<div class="accordion" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Detalles del Producto
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <p>Nombre del Producto: @Model.Nombre</p>
+                <p>Precio Unitario: @Model.PrecioVentaUnid</p>
+                <!-- Agregar más detalles del producto según sea necesario -->
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Calculadora de Precios
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                @using (Html.BeginForm("CalcularPrecios", "Ropa", FormMethod.Post))
+                {
+                    <p>IVA Precio Docena: @(Model.PrecioDocena)</p>
+                    <p>Precio Docena + IVA: @(Decimal.Multiply(Model.PrecioDocena, 1.12m))</p>
+                    <p>Precio Unitario + IVA: @(Decimal.Multiply(Model.PrecioVentaUnid, 1.12m))</p>
+                    <p>Precio Unitario + 50%: @(Decimal.Multiply(Model.PrecioVentaUnid, 1.5m))</p>
+                    <p>Precio Unitario + 60%: @(Decimal.Multiply(Model.PrecioVentaUnid, 1.6m))</p>
+                    <p>Precio de Venta al Público x3 (50%): @(Decimal.Multiply(Model.PrecioVentaUnid, 4.5m))</p>
+                    <p>Precio de Venta al Público x3 (60%): @(Decimal.Multiply(Model.PrecioVentaUnid, 4.8m))</p>
+
+                }
+
+            </div>
+        </div>
+
+    </div>
+    <a asp-action="Index" class="btn btn-outline-primary">Regresar</a>
+</div>

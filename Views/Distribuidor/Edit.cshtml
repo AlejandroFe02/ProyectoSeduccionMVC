@@ -1,0 +1,43 @@
+﻿@model Distribuidor
+@{
+    ViewData["Title"] = "Agregar producto";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label class="form-label">ID Distribuidor</label>
+        <input asp-for="IdDistribuidor" class="form-control" disable>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Marca</label>
+        <input asp-for="Marca" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contacto</label>
+        <input asp-for="Contacto" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Numero de Compras</label>
+        <input asp-for="NumeroCompra" class="form-control">
+    </div>
+
+
+
+    <div class="row col-6">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        <div class="col-6">
+            <a asp-action="Index" class="btn btn-outline-primary">Regresar</a>
+        </div>
+
+    </div>
+</form>
+
+<p>Esta pagina crea el producto</p>

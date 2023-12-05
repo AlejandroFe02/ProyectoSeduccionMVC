@@ -1,0 +1,61 @@
+﻿@model List<Distribuidor> 
+@{
+    ViewData["Title"] = "Lista de Distribuidores";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success" onclick=" location.href='@Url.Action("Create", "Distribuidor")' ">Agregar un nuevo Distribuidor</button>
+<p>Esta pagina muestra los distribuidores de la empresa</p>
+
+<table class="table">
+    <thead class="table-danger">
+        <tr>
+            <th scope="col">IdDistribuidor</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Contacto</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-dark">
+                <td>@item.IdDistribuidor</td>
+                <td>@item.Nombre</td>
+                <td>@item.Marca</td>
+                <td>@item.Contacto</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a asp-action="Delete" asp-route-IdDistribuidor="@item.IdDistribuidor" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+                        <a asp-action="Edit" asp-route-IdDistribuidor="@item.IdDistribuidor" class="btn btn-danger"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Details" asp-route-IdDistribuidor="@item.IdDistribuidor" class="btn btn-danger"><i class="bi bi-eye"></i></a>
+                    </div>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        $("#mostrarProductosBtn").click(function () {
+            var distribuidorId = /* Obtén el ID del distribuidor que corresponde */;
+
+            $.ajax({
+                type: "POST",
+                url: "/Views/Pedido/Filtro",
+                data: { Id: distribuidorId },
+                success: function (data) {
+                    // Aquí puedes abrir el modal y mostrar la respuesta en el modal
+                    $("#miModal .modal-body").html(data);
+                    $("#miModal").modal("show");
+                }
+            });
+        });
+    });
+</script>
+

@@ -1,0 +1,43 @@
+﻿@model List<Ropa>
+@{
+    ViewData["Title"] = "Lista de productos";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success" onclick=" location.href='@Url.Action("Create", "Ropa")' ">Agregar un nuevo Producto</button>
+<p>Esta pagina muestra los productos</p>
+
+<table class="table">
+    <thead class="table-info">
+        <tr>
+            <th scope="col">Ref</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Precio Decena</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>@item.Codigo</td>
+                <td>@item.Nombre</td>
+                <td>@item.Marca</td>
+                <td>@item.Stock</td>
+                <td>@item.PrecioDocena</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a asp-action="Delete" asp-route-Codigo="@item.Codigo" class="btn btn-info"><i class="bi bi-trash3"></i></a>
+                        <a asp-action="Edit" asp-route-Codigo="@item.Codigo" class="btn btn-info"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Details" asp-route-Codigo="@item.Codigo" class="btn btn-info"><i class="bi bi-eye"></i></a>
+                        <a asp-action="Precio" asp-route-Codigo="@item.Codigo" class="btn btn-info"><i class="bi bi-calculator-fill"></i></a>
+
+                    </div>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table> 

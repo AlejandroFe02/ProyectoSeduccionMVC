@@ -1,0 +1,43 @@
+﻿@model List<Cliente>
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead class="table-info">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Cedula</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Contrasenia</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cliente in Model)
+                    {
+                        <tr class="table-secondary">
+                            <td>@cliente.Nombre</td>
+                            <td>@cliente.Apellido</td>
+                            <td>@cliente.Cedula</td>
+                            <td>@cliente.Correo</td>
+                            <td>********</td> <!-- Mostrar asteriscos en lugar de la contraseña real -->
+                            <td>@cliente.Direccion</td>
+                            <td>@cliente.Telefono</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <a asp-action="Details" asp-route-cedula="@cliente.Cedula" class="btn btn-info"><i class="bi bi-eye"></i> Detalles</a>
+                                    <a asp-action="Edit" asp-route-cedula="@cliente.Cedula" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a asp-action="Delete" asp-route-cedula="@cliente.Cedula" class="btn btn-danger"><i class="bi bi-trash3"></i> Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }

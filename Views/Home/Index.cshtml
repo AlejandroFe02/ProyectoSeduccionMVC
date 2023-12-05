@@ -1,0 +1,101 @@
+﻿@model List<Pedido>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido</h1>
+    
+
+    <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="@Url.Action("Index","Ropa")">
+                    <img src="~/Imagenes/Carrusel1.jpg" class="d-block w-100" alt="Carrusel1" width="300" height="300">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Nuestros Productos</h5>
+                    <p>Aquí podrás ver todo lo relacionado a nuestros productos.</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <a href="@Url.Action("Index","Distribuidor")">
+                    <img src="~/Imagenes/Carrusel2.jpg" class="d-block w-100" alt="Carrusel2" width="300" height="300">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Nuestros Distribuidores</h5>
+                    <p>Aquí encontrarás la información de nuestros distribuidores.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="@Url.Action("Index","Pedido")">
+                    <img src="~/Imagenes/Carrusel3.jpg" class="d-block w-100" alt="Carrusel3" width="300" height="300">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Pedidos</h5>
+                    <p>Esta herramienta te ayudará a identificar los productos que se encuentren con un stock bajo o decees comprar.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div >
+        <li class="nav-item">
+        </li>
+
+    </div>
+
+    <div class="accordion" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Lista de futuros abastecimientos
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-parent="#accordionFlushExample">
+                
+                <div class="accordion-body">
+
+                    <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Ref</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Precio Decena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="table-secondary">
+                                <td>@item.PedidoId</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Marca</td>
+                                <td>@item.Stock</td>
+                                <td>@item.PrecioDocena</td>
+                            </tr>
+                        }
+                    </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

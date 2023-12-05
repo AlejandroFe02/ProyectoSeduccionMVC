@@ -1,0 +1,46 @@
+﻿@model List<ProyectoProg1.Models.Comentario>
+
+@{
+    ViewData["Title"] = "Lista de Comentarios";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    <table class="table table-gray-bg">
+        <head class="table-info">
+            <tr>
+                <th>Cedula del Autor</th>
+                <th>Nombre del Autor</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+                <th>Acciones</th> <!-- Nueva columna para acciones -->
+            </tr>
+        </head>
+        <tbody>
+            @foreach (var comentario in Model)
+            {
+                <tr class="table-secondary">
+                    <td>@comentario.CedulaAutor</td>
+                    <td>@comentario.NombreAutor</td>
+                    <td>@comentario.Mensaje</td>
+                    <td>@comentario.Fecha.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    <td>
+                        <a asp-action="Detalles" asp-route-id="@comentario.IdComentario" class="btn btn-info">Detalles</a>
+                        <button onclick="borrarComentario(@comentario.IdComentario)" class="btn btn-danger">Borrar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        function borrarComentario(idComentario) {
+            // Puedes agregar aquí la lógica para confirmar la eliminación si lo deseas
+            // Por ahora, simplemente redireccionamos al controlador de eliminación
+            window.location.href = "/Comentarios/Eliminar/" + idComentario;
+        }
+    </script>
+}
